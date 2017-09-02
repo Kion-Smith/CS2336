@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class Question3
 {
+	/*
+	 * Validate social security number, checking that format is correct
+	 */
 	public void answer()
 	{
 		Scanner kb = new Scanner(System.in);//create scanner object

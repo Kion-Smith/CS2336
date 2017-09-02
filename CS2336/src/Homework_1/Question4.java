@@ -4,10 +4,13 @@ import java.util.Scanner;
 
 public class Question4 
 {
+	/*
+	 * Calculate an employs fedral and state taxes based off payrate an hours
+	 */
 	public void answer()
 	{
 		Scanner kb = new Scanner(System.in);//create scanner object
-		//geting user info
+		//Getting user info
 		System.out.println("Enter employee's name:");
 		String empName = kb.nextLine();
 		

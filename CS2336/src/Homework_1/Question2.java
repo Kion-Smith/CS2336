@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class Question2 
 {
+	/*
+	 * Create random lotto number and verify with user input
+	 */
 	public void answer()
 	{
 		Scanner kb = new Scanner(System.in);//scanner object

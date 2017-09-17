@@ -2,6 +2,11 @@ package Homework_2;
 
 import java.util.Scanner;
 
+/*Name: Kion Smith
+ * NetID: kls160430
+ * CS2336-502
+ */
+//move anything higher than partition to the right of the partition and anything lower to left
 public class HW2Quesstion1 
 {
 	int[] userArray;

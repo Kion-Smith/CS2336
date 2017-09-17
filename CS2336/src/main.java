@@ -3,6 +3,7 @@ import Homework_2.HW2Quesstion1;
 
 public class main 
 {
+	
 	public static void main(String[] args)
 	{
 		/* Homework1
@@ -20,5 +21,5 @@ public class main
 		*/
 		HW2Quesstion1 HW2q1 = new HW2Quesstion1();
 		HW2q1.answer();
-	}
+	} 
 }

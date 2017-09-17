@@ -1,5 +1,9 @@
 package Question2;
-
+/*Name: Kion Smith
+ * NetID: kls160430
+ * CS2336-502
+ */
+//Create a object//
 public class cardCar 
 {
 	private String carName;
@@ -15,7 +19,7 @@ public class cardCar
 	private int wins;
 	
 	private char symbol;
-	
+	//default constructor using all the variables
 	public cardCar(String name,float hS,float hC,float hU,float rP,float cP, float tP,float a,int w,char s)
 	{
 		carName = name;
@@ -29,7 +33,7 @@ public class cardCar
 		wins = w;
 		symbol= s;
 	}
-	
+	//getters for car
 	public String getCarName()
 	{
 		return carName;
@@ -70,7 +74,7 @@ public class cardCar
 	{
 		return symbol;
 	}
-	
+	//Setters for car
 	public void setCarName(String name)
 	{
 		carName = name;

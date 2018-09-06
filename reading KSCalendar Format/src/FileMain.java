@@ -29,8 +29,51 @@ public class FileMain
 			{
 				System.out.println(curLine);
 				
+				for(int i =0; i< curLine.length();i++)
+				{
 				
-			}
+					try
+					{
+						if(i==0 && (curLine.charAt(i)+"").equals("["))
+						{
+							String yearString =curLine.substring(curLine.indexOf("[")+1,curLine.indexOf("/"));
+								
+							String monthString =curLine.substring(curLine.indexOf("/")+1);
+							String dayString = monthString;
+							monthString = monthString.substring(0,monthString.indexOf("/"));
+								
+							dayString = dayString.substring(dayString.indexOf("/")+1,dayString.indexOf("]"));
+								
+							System.out.println("@ Output - Year = "+yearString);
+							System.out.println("@ Output - Month = "+monthString);
+							System.out.println("@ Output - Day = "+dayString);
+							
+							if(curLine.contains(":{"))
+							{
+								
+								//get content from the line
+							}
+							else
+							{
+								break;
+							}
+							
+						}
+						else if(curLine.contains("{"))
+						{
+							//check to see if anything is on cur line, if not iterate
+						}
+					}
+					catch(Exception e)
+					{
+						break;
+					}
+
+					
+				}//end for
+				
+				
+			}//end while
 
 			
 		} 

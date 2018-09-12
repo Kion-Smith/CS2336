@@ -57,39 +57,84 @@ public class FileMain
 						clArray.add( new CalendarObject(convertStringToInt(yearString),convertStringToInt(monthString),convertStringToInt(dayString)));
 						dataItems = dataItems.substring(dataItems.indexOf("{"));
 							
-						boolean hasRightBrace = false;
-						boolean hasFirstQuote= false;
+						boolean isBetweenBrace = false;
+						boolean isBetweenQuote = false;
+						boolean isEndOfString = false;
+						
 						String temp ="";
 						for(int i=0;i<dataItems.length();i++)
 						{
-							//System.out.println("DEBUG::"+(dataItems.charAt(i)+""));
+							
 							switch( (dataItems.charAt(i)+""))
 							{
 								case "{":
-									if(!hasRightBrace)
+									if(!isBetweenBrace && !isBetweenQuote)
 									{
-										hasRightBrace = true;
+										isBetweenBrace = true;
 									}
 									break;
-								case "\"":
-									if(hasRightBrace && !hasFirstQuote)
+									
+								case "}":
+									if(isEndOfString)
 									{
-										hasFirstQuote = true;
-										break;
+										//save this to a linked list  of Calendar objects, and if no errors are raised will push all of this to the array storing calender dates
+										System.out.println("DID THIS RUN:: "+temp);
+										
+										temp = "";
+										isEndOfString=false;
 									}
-									else if(hasRightBrace && hasFirstQuote)
+									else if(isBetweenBrace && !isBetweenQuote)
 									{
-										break;
+										isBetweenBrace = false;
 									}
 									
+								
+									break;
+									
+								case "\"":
+									if(isBetweenBrace && !isBetweenQuote)
+									{
+										isBetweenQuote = true;
+										
+									}
+									else if(isBetweenBrace && isBetweenQuote)
+									{
+										
+										isBetweenQuote = false;
+										
+										//
+									}
+									break;
+									
+								case ";":
+									
+									if(!isBetweenQuote)
+									{
+										
+										isEndOfString = true;
+									}
+									break;
+									
 								default:
-									temp += dataItems.charAt(i)+"";
-									System.out.println("DID THIS RUN:: "+temp);
+									if(isEndOfString)
+									{
+										temp += dataItems.charAt(i)+"";
+										System.out.println("DID THIS RUN:: "+temp);
+										
+										temp = "";
+										isEndOfString=false;
+									}
+									else if(isBetweenBrace && isBetweenQuote)
+									{
+										temp += dataItems.charAt(i)+"";
+									}
+									
 									break;
 							}
+								
+								
 						}
-
-							
+										
 					}
 					else
 					{

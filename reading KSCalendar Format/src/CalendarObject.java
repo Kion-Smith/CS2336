@@ -45,5 +45,10 @@ public class CalendarObject
 	{
 		return day;
 	}
+	
+	public String toString()
+	{
+		return "["+year+"/"+month+"/"+day+"]:"+Notes.toString();
+	}
 
 }

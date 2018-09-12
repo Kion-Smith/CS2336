@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 
 public class FileMain 
@@ -9,8 +9,9 @@ public class FileMain
 	public static void main(String [] args)
 	{
 		
-		
-	
+		//going to sort when inserting a new date
+		LinkedList<CalendarObject> calendarList = new LinkedList();
+		boolean hasThrownError = false;
 		try 
 		{
 			File myFile = new File("TestCal.ksc");
@@ -22,7 +23,6 @@ public class FileMain
 			
 			BufferedReader bf = new BufferedReader(new FileReader(myFile));
 			
-			ArrayList<CalendarObject> clArray = new ArrayList();
 			
 			System.out.println("File Loaded");
 			System.out.println("----------------------------");
@@ -32,13 +32,13 @@ public class FileMain
 
 			while( (curLine =bf.readLine()) != null)
 			{
-				System.out.println(curLine);
+				//System.out.println(curLine);
 				
 				try
 				{
 					if((curLine.charAt(0)+"").equals("["))
 					{
-							// could put this in a date handling all string items. Could also make 2 methods for handeling string items
+	
 						String yearString =curLine.substring(curLine.indexOf("[")+1,curLine.indexOf("/"));
 								
 						String monthString =curLine.substring(curLine.indexOf("/")+1);
@@ -48,13 +48,8 @@ public class FileMain
 						String dataItems = dayString;
 						dayString = dayString.substring(dayString.indexOf("/")+1,dayString.indexOf("]"));
 								
-						System.out.println("@ Output - Year = "+yearString);
-						System.out.println("@ Output - Month = "+monthString);
-						System.out.println("@ Output - Day = "+dayString);
-							
-							
-							//changed idea only valid way of entering data for a month is
-						clArray.add( new CalendarObject(convertStringToInt(yearString),convertStringToInt(monthString),convertStringToInt(dayString)));
+						CalendarObject tempObject = new CalendarObject(convertStringToInt(yearString),convertStringToInt(monthString),convertStringToInt(dayString));
+						
 						dataItems = dataItems.substring(dataItems.indexOf("{"));
 							
 						boolean isBetweenBrace = false;
@@ -67,18 +62,22 @@ public class FileMain
 							
 							switch( (dataItems.charAt(i)+""))
 							{
+							
 								case "{":
 									if(!isBetweenBrace && !isBetweenQuote)
 									{
 										isBetweenBrace = true;
 									}
+									
 									break;
 									
 								case "}":
 									if(isEndOfString)
 									{
-										//save this to a linked list  of Calendar objects, and if no errors are raised will push all of this to the array storing calender dates
-										System.out.println("DID THIS RUN:: "+temp);
+										
+										tempObject.addToNotesList(temp);
+										calendarList.add(tempObject);
+										
 										
 										temp = "";
 										isEndOfString=false;
@@ -88,7 +87,6 @@ public class FileMain
 										isBetweenBrace = false;
 									}
 									
-								
 									break;
 									
 								case "\"":
@@ -104,6 +102,7 @@ public class FileMain
 										
 										//
 									}
+									
 									break;
 									
 								case ";":
@@ -113,14 +112,15 @@ public class FileMain
 										
 										isEndOfString = true;
 									}
+									
 									break;
 									
 								default:
 									if(isEndOfString)
 									{
 										temp += dataItems.charAt(i)+"";
-										System.out.println("DID THIS RUN:: "+temp);
 										
+										tempObject.addToNotesList(temp);
 										temp = "";
 										isEndOfString=false;
 									}
@@ -130,20 +130,17 @@ public class FileMain
 									}
 									
 									break;
-							}
+									
+							}// end of swith	
 								
-								
-						}
-										
+						}// end of for
+						
 					}
-					else
-					{
-						break;
-					}
-					
+							
 				}
 				catch(Exception e)
 				{
+					hasThrownError = true;
 					System.out.println("Error");
 					break;
 				} //end of try catch
@@ -157,6 +154,17 @@ public class FileMain
 			System.out.println("File Not Found");
 		}
 		
+		if(!hasThrownError)
+		{
+			for(int i =0;i<calendarList.size();i++)
+			{
+				System.out.println(i+" at "+calendarList.get(i).toString());
+			}
+		}
+		
+		
+		
+
 	}
 	
 	public static int convertStringToInt(String string)

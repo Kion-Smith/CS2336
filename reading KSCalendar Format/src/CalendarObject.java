@@ -48,7 +48,13 @@ public class CalendarObject
 	
 	public String toString()
 	{
-		return "["+year+"/"+month+"/"+day+"]:"+Notes.toString();
+		String temp = "["+year+"/"+month+"/"+day+"]:{";
+		for(int i=0;i<Notes.size();i++)
+		{
+			temp+= "\""+Notes.get(i).toString() +"\";";
+		}
+		temp+="}";
+		return temp;
 	}
 
 }

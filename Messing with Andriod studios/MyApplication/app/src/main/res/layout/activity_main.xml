@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+
+    <EditText
+        android:id="@+id/reminderButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignBottom="@+id/doneButton"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_toLeftOf="@+id/doneButton"
+        android:layout_toStartOf="@+id/doneButton"
+        android:hint="reminder" />
+
+    <Button
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="137dp"
+        android:text="done"
+        android:id="@+id/doneButton" />
+
+    <CalendarView
+        android:id="@+id/calendarView2"
+        android:layout_width="360dp"
+        android:layout_height="350dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp" />
+
+</RelativeLayout>

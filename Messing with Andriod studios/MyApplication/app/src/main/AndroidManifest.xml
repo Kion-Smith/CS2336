@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.testapp.neonkion.myapplication">
+    package="com.example.kion_.myapplication">
 
     <application
         android:allowBackup="true"
